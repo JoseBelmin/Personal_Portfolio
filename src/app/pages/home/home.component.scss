@@ -97,20 +97,87 @@
   }
 }
 
-/* Features Section */
-.features-section {
+/* Why Choose Me Section*/
+  .features-section {
   background-color: var(--secondary-bg-light); // Slightly off-white background
   padding: 60px 20px;
+  text-align: center; // Center text for section label, heading, sub-label
 
   .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjusted minmax for better 3-column fit */
+    gap: 30px; /* Adjusted gap for spacing between cards */
     justify-content: center;
     align-items: stretch;
 
     .feature-card {
-      // @extend .card-base; // REMOVED THIS LINE
+      background-color: var(--primary-bg-light);
+      border-radius: 5px;
+      box-shadow: 0 5px 15px var(--shadow-light);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      padding: 30px; /* Increased padding slightly for content */
+      border: 1px solid var(--border-light); /* Added light border */
+
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+      }
+
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Center content horizontally */
+      text-align: center; /* Center text within card */
+
+      .feature-icon {
+        margin-bottom: 20px; /* Space between icon and heading */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 60px; /* Container size for icon */
+        height: 60px;
+        border-radius: 50%; /* Make it a circle */
+        background-color: var(--primary-bg-light); /* Icon background */
+        border: 1px solid var(--accent-red); /* Red border for icon circle */
+        box-shadow: 0 2px 8px rgba(233, 30, 99, 0.2); /* Subtle red shadow for icon */
+
+        img {
+          // If your SVG is monochrome (black/white) and you want it colored:
+          // The 'fill: var(--accent-red);' in HTML is preferable if SVG supports it.
+          // Otherwise, you can use a filter here (e.g., for red accent):
+          // filter: invert(36%) sepia(99%) saturate(4083%) hue-rotate(334deg) brightness(101%) contrast(100%);
+        }
+      }
+
+      h3 {
+        font-family: var(--body-font); // Or var(--heading-font) if you prefer for card titles
+        font-size: 1.4em;
+        margin-bottom: 10px;
+        color: var(--heading-color); // Card title color
+      }
+      p {
+        font-size: 0.95em;
+        color: var(--text-dark);
+        line-height: 1.6;
+        opacity: 0.8;
+      }
+    }
+  }
+}
+
+/* Softwares Section */
+.softwares-section { /* Changed from .Softwares-section */
+  background-color: var(--secondary-bg-light); // Slightly off-white background
+  padding: 60px 20px;
+
+  .softwares-grid { /* Changed from .Softwares-grid */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1em;
+    justify-content: center;
+    align-items: stretch;
+
+    .software-card {
       background-color: var(--primary-bg-light); // Copied from .card-base
       border-radius: 5px; // Less rounded corners (Copied from .card-base)
       box-shadow: 0 5px 15px var(--shadow-light); // (Copied from .card-base)
