@@ -1,0 +1,101 @@
+/* frontend/src/app/components/header/header.component.scss */
+
+.main-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 30px 0; // More padding
+
+  .navbar {
+    display: flex;
+    flex-direction: column; // Stack logo and nav vertically
+    justify-content: center; // Center items
+    align-items: center;
+    padding: 0 20px;
+  }
+
+  .logo {
+    margin-bottom: 25px; // Space between logo and nav
+    a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--heading-color); // Logo color
+      font-family: var(--heading-font);
+      font-size: 1.5em;
+      font-weight: 700;
+      letter-spacing: 1px;
+
+      &:hover {
+        color: var(--accent-red);
+        text-decoration: none;
+      }
+    }
+
+    .logo-icon {
+      height: 2.2em; /* Adjust size as needed to match design */
+      width: auto;
+      // The design has a subtle red border around the logo or a light blue 'S'.
+      // If your SVG is monochrome, you might need to use CSS filter to color it.
+      // Or if it's already a colored 'S', maybe a box-shadow: 0 0 0 2px var(--accent-red);
+      // Example for the 'S' itself (if it's monochrome white/black): filter: invert(36%) sepia(99%) saturate(4083%) hue-rotate(334deg) brightness(101%) contrast(100%);
+    }
+  }
+
+  .nav-links {
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 35px; // More space between links
+
+      li {
+        a {
+          font-family: var(--body-font);
+          font-weight: 500;
+          color: var(--text-dark); // Dark text for navigation
+          transition: color 0.3s ease;
+          position: relative;
+          text-transform: uppercase; // All caps for navigation
+          font-size: 0.95em;
+
+          &:hover {
+            color: var(--accent-red); // Red accent on hover
+            text-decoration: none;
+          }
+
+          &::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-red); // Red underline
+            transition: width 0.3s ease;
+          }
+
+          &:hover::after {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .nav-links {
+      ul {
+        gap: 15px; // Reduce gap on smaller screens
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+    .navbar {
+      justify-content: center;
+    }
+  }
+}

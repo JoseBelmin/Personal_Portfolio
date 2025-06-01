@@ -1,166 +1,115 @@
 /* frontend/src/styles.scss */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
+// Importing fonts: Playfair Display for headings, Roboto (or Inter) for body
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap');
 
 :root {
-  --primary-color: #007bff;
-  --secondary-color: #6c757d;
-  --text-color: #333;
-  --background-color: #f8f9fa;
-  --card-background: #ffffff;
-  --border-color: #dee2e6;
+  // New light theme colors
+  --primary-bg-light: #ffffff; // Bright white background
+  --secondary-bg-light: #f9f9f9; // Slightly off-white for sections/cards
+  --text-dark: #333333; // Dark text for readability
+  --heading-color: #3f51b5; // A blue for main headings
+
+  // Define base Sass variables for colors that need to be lightened/darkened
+  $base-accent-red: #e91e63;
+  $base-accent-blue: #2196f3;
+
+  // Now, create the CSS variables using these Sass variables and functions
+  --accent-red: #{$base-accent-red}; // Red accent for outlines and highlights
+  --accent-blue: #{$base-accent-blue}; // Blue accent for some text
+
+  // Corrected: Define a CSS variable for the darkened red accent
+  --accent-red-darkened: #{darken($base-accent-red, 10%)};
+
+  --border-light: #e0e0e0; // Light border for separation
+  --shadow-light: rgba(0, 0, 0, 0.08); // Light shadow for depth
+
+  --heading-font: 'Playfair Display', serif; // Elegant serif for main headings
+  --body-font: 'Roboto', sans-serif; // Clean sans-serif for body text and general UI
+  --alt-font-thin: 'Roboto', sans-serif; // For thin, uppercase labels
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--body-font);
   margin: 0;
   padding: 0;
-  background-color: var(--background-color);
-  color: var(--text-color);
+  background-color: var(--primary-bg-light);
+  color: var(--text-dark);
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  box-sizing: border-box;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: var(--primary-color);
+  font-family: var(--heading-font);
+  color: var(--heading-color); // Headings are blue
   margin-top: 1em;
   margin-bottom: 0.5em;
+  text-align: center;
 }
 
 a {
-  color: var(--primary-color);
+  color: var(--accent-red); // Links are red accent
   text-decoration: none;
+  transition: color 0.3s ease;
 
   &:hover {
+    color: var(--accent-red-darkened); // Use the pre-calculated darkened variable
     text-decoration: underline;
   }
 }
 
 button {
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  background-color: transparent; // Buttons are often outlined
+  color: var(--accent-red); // Text in red accent
+  border: 2px solid var(--accent-red); // Red outline
+  padding: 12px 30px;
+  border-radius: 5px; // Slightly rounded
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  font-size: 1.1em;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: none;
 
   &:hover {
-    background-color: var(--primary-color); /* Keep base color */
-    filter: brightness(0.9); /* Make it slightly darker */
+    background-color: var(--accent-red); // Red background on hover
+    color: var(--primary-bg-light); // White text on hover
+    transform: translateY(-2px); // Slight lift
+    box-shadow: 0 4px 10px var(--shadow-light);
   }
 }
 
-/* Header styles */
-app-header {
-  background-color: var(--card-background);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 15px 0;
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-  .logo {
-    font-size: 1.8em;
-    font-weight: 700;
-    color: var(--primary-color);
-  }
-  .nav-links {
-    ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      li {
-        margin-left: 20px;
-        a {
-          font-weight: 400;
-          color: var(--text-color);
-          &:hover {
-            color: var(--primary-color);
-          }
-        }
-      }
-    }
-  }
+/* Base styles for sections */
+section {
+  padding: 80px 20px;
+  background-color: var(--primary-bg-light); // Default section background
 }
 
-/* Footer styles */
-app-footer {
-  background-color: var(--secondary-color);
-  color: white;
-  text-align: center;
-  padding: 20px 0;
-  margin-top: 40px;
-  .footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-}
-
-/* Card styles for portfolio/blog listings */
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
-}
-
-.card {
-  background-color: var(--card-background);
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+/* Card styles (general purpose, can be extended for specific sections) */
+.card-base {
+  background-color: var(--primary-bg-light);
+  border-radius: 5px; // Less rounded corners
+  box-shadow: 0 5px 15px var(--shadow-light);
   overflow: hidden;
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 25px;
 
   &:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
   }
+}
 
-  &__image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    background-color: var(--background-color); /* Placeholder background */
-  }
-
-  &__content {
-    padding: 20px;
-  }
-
-  &__title {
-    font-size: 1.5em;
-    margin-top: 0;
-    margin-bottom: 10px;
-  }
-
-  &__description {
-    font-size: 0.95em;
-    color: #555;
-  }
-
-  &__link {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 8px 15px;
-    background-color: var(--primary-color);
-    color: white;
-    border-radius: 5px;
-    text-decoration: none;
-
-    &:hover {
-      background-color: var(--primary-color); /* Keep base color */
-      filter: brightness(0.9); /* Make it slightly darker */
-    }
-  }
+// Remove old header/footer global styles as they will be component-specific
+app-header, app-footer {
+  background-color: transparent;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
 }

@@ -1,0 +1,53 @@
+/* frontend/src/app/components/footer/footer.component.scss */
+
+.main-footer {
+  background-color: var(--secondary-bg-light); // Light background for footer
+  padding: 40px 20px;
+  text-align: center;
+  margin-top: 0;
+  border-top: 1px solid var(--border-light); // Subtle top border
+
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    .logo-icon {
+      height: 2.2em; /* Adjust size as needed */
+      width: auto;
+      // You can color it via CSS filter if it's monochrome,
+      // otherwise ensure your SVG file has the desired color.
+    }
+  }
+
+  .footer-nav {
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+
+      li {
+        a {
+          font-family: var(--body-font);
+          color: var(--text-dark); // Dark text for footer links
+          opacity: 0.8;
+          transition: opacity 0.3s ease, color 0.3s ease;
+          &:hover {
+            opacity: 1;
+            color: var(--accent-red); // Red accent on hover
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+}

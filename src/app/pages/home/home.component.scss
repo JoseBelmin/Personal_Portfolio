@@ -1,0 +1,406 @@
+:host {
+  display: block;
+  background-color: var(--primary-bg-light);
+  color: var(--text-dark);
+}
+
+.light-theme-section {
+  background-color: var(--primary-bg-light);
+  color: var(--text-dark);
+}
+
+/* Hero Section */
+.hero-section {
+  padding: 150px 20px 80px; // More top padding to account for header
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 80vh; // Ensure it takes up most of the viewport height
+
+  .hero-circle-container {
+    position: relative;
+    width: 250px; // Size of the entire circle structure
+    height: 250px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .hero-circle-outer {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 1px solid var(--border-light); // Light outline
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    .hero-circle-inner {
+      width: 80%; // Inner circle size relative to outer
+      height: 80%;
+      border-radius: 50%;
+      overflow: hidden; // Ensure image stays within circle
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: var(--secondary-bg-light); // Background for inner circle
+      z-index: 2;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%; // Keep image circular
+      }
+    }
+  }
+
+  .hero-label {
+    font-family: var(--alt-font-thin);
+    font-size: 0.9em;
+    color: var(--accent-red); // Red label
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+
+  .hero-title {
+    font-size: 4.5em; // Larger font size
+    font-family: var(--heading-font);
+    color: var(--heading-color); // Blue heading
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+
+    @media (max-width: 768px) {
+      font-size: 3em;
+    }
+    @media (max-width: 480px) {
+      font-size: 2.5em;
+    }
+  }
+
+  .hero-subtitle {
+    font-size: 1.2em;
+    font-family: var(--alt-font-thin);
+    color: var(--text-dark);
+    margin-top: 10px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    @media (max-width: 768px) {
+      font-size: 1em;
+    }
+  }
+}
+
+/* Features Section */
+.features-section {
+  background-color: var(--secondary-bg-light); // Slightly off-white background
+  padding: 60px 20px;
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    align-items: stretch;
+
+    .feature-card {
+      // @extend .card-base; // REMOVED THIS LINE
+      background-color: var(--primary-bg-light); // Copied from .card-base
+      border-radius: 5px; // Less rounded corners (Copied from .card-base)
+      box-shadow: 0 5px 15px var(--shadow-light); // (Copied from .card-base)
+      overflow: hidden; // (Copied from .card-base)
+      transition: transform 0.3s ease, box-shadow 0.3s ease; // (Copied from .card-base)
+      padding: 25px; // (Copied from .card-base)
+
+      &:hover {
+        transform: translateY(-3px); // (Copied from .card-base)
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12); // (Copied from .card-base)
+      }
+
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 30px;
+      border: 1px solid var(--border-light); // Add a light border
+
+      // Specific styles for outlined circular cards
+      &.card-outline-circle {
+        border-radius: 50%; // Circular shape
+        width: 200px; // Fixed width for circular cards
+        height: 200px; // Fixed height for circular cards
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0; // No padding for content within circle
+        box-shadow: none; // No shadow for these cards
+        &:hover {
+          transform: none; // No transform on hover for these
+          box-shadow: none;
+          background-color: var(--primary-bg-light); // Keep background consistent
+          border-color: var(--accent-red); // Red border on hover
+          h3, p {
+            color: var(--accent-red); // Red text on hover
+          }
+        }
+
+        h3 {
+          font-family: var(--body-font); // Simpler font for these headings
+          font-size: 1.1em;
+          margin-bottom: 5px;
+          color: var(--text-dark);
+        }
+        p {
+          font-size: 0.85em;
+          color: var(--text-dark);
+          opacity: 0.7;
+        }
+      }
+
+      // Specific styles for the outlined square card (the "missing" one)
+      &.card-outline-square {
+        grid-column: span 1; // Explicitly one column
+        background-color: var(--primary-bg-light); // Light background
+        border: 1px solid var(--accent-red); // Red outline
+        box-shadow: 0 5px 15px rgba(233, 30, 99, 0.15); // Subtle red shadow
+        border-radius: 5px; // Square corners
+        padding: 0; // No padding inside
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        min-height: 250px; // Ensure it's visually prominent
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        @media (max-width: 768px) {
+          grid-column: span 1; // Always one column on smaller screens
+        }
+
+        &:hover {
+          transform: none; // No transform on hover for this
+          box-shadow: 0 8px 25px rgba(233, 30, 99, 0.25); // More prominent red shadow on hover
+        }
+      }
+    }
+  }
+}
+
+/* Content Block Sections */
+.content-block-section {
+  padding: 80px 20px;
+  background-color: var(--primary-bg-light);
+
+  .content-block-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    align-items: center;
+    text-align: center; // Default to center for mobile
+
+    @media (min-width: 992px) {
+      grid-template-columns: 1fr 1fr;
+      text-align: left;
+    }
+  }
+
+  &.reverse-layout {
+    .content-block-grid {
+      @media (min-width: 992px) {
+        grid-template-columns: 1fr 1fr;
+        .content-image {
+          order: 2;
+        }
+        .content-text {
+          order: 1;
+        }
+      }
+    }
+  }
+
+  .content-image {
+    display: flex;
+    justify-content: center;
+    img {
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+      border-radius: 5px; // Less rounded
+      box-shadow: 0 5px 15px var(--shadow-light);
+    }
+
+    &.content-image-circle {
+      position: relative;
+      width: 300px; // Fixed size for circular image container
+      height: 300px;
+      margin: 0 auto; // Center the circular image
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%; // Circular image
+        box-shadow: 0 5px 15px var(--shadow-light);
+      }
+
+      .circle-accent {
+        position: absolute;
+        width: 60px; // Size of the small accent circle
+        height: 60px;
+        background-color: var(--accent-red); // Red accent circle
+        border-radius: 50%;
+        top: -15px; // Position it slightly above/left
+        left: -15px;
+        z-index: 10;
+        box-shadow: 0 0 15px rgba(233, 30, 99, 0.4);
+      }
+    }
+  }
+
+  .content-label {
+    font-family: var(--alt-font-thin);
+    font-size: 0.9em;
+    color: var(--accent-red);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+
+  .content-text {
+    h2 {
+      text-align: inherit; // Inherit from parent grid
+      font-size: 2.2em;
+      color: var(--heading-color);
+      line-height: 1.3;
+
+      @media (max-width: 768px) {
+        text-align: center;
+        font-size: 1.8em;
+      }
+    }
+    .content-sublabel {
+      font-family: var(--alt-font-thin);
+      font-size: 0.9em;
+      color: var(--accent-blue); // Blue sub-label
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-top: -10px; // Closer to title
+      margin-bottom: 25px;
+    }
+    p {
+      font-size: 1.1em;
+      line-height: 1.8;
+      margin-bottom: 25px;
+      color: var(--text-dark);
+      opacity: 0.9;
+    }
+    .read-more-btn {
+      display: inline-block;
+      text-transform: uppercase;
+    }
+  }
+}
+
+/* Conference Section */
+.conference-section {
+  background-color: var(--secondary-bg-light); // Off-white background
+  padding: 60px 20px;
+  text-align: center;
+
+  .section-label {
+    font-family: var(--alt-font-thin);
+    font-size: 0.9em;
+    color: var(--accent-red);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    color: var(--heading-color);
+    @media (max-width: 768px) {
+      font-size: 1.8em;
+    }
+  }
+  .contact-btn {
+    text-transform: uppercase;
+  }
+}
+
+/* Project Showcase Section */
+.project-showcase-section {
+  background-color: var(--primary-bg-light);
+  padding-bottom: 80px;
+
+  .project-showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    justify-content: center;
+
+    .project-card {
+      // @extend .card-base; // REMOVED THIS LINE
+      background-color: var(--primary-bg-light); // Copied from .card-base
+      border-radius: 5px; // Less rounded corners (Copied from .card-base)
+      box-shadow: 0 5px 15px var(--shadow-light); // (Copied from .card-base)
+      overflow: hidden; // (Copied from .card-base)
+      transition: transform 0.3s ease, box-shadow 0.3s ease; // (Copied from .card-base)
+      padding: 25px; // (Copied from .card-base)
+
+      &:hover {
+        transform: translateY(-3px); // (Copied from .card-base)
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12); // (Copied from .card-base)
+      }
+
+
+      padding: 0;
+      text-align: center; // Center text for these cards
+      border: 1px solid var(--border-light); // Light border
+      box-shadow: none; // No shadow for these
+      &:hover {
+        transform: none;
+        box-shadow: 0 5px 15px var(--shadow-light); // Slight shadow on hover
+      }
+
+      img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 0; // No border-radius on images
+        margin-bottom: 15px;
+      }
+
+      h3 {
+        font-family: var(--body-font); // Simpler font for these headings
+        font-size: 1.3em;
+        margin: 0 20px 10px;
+        color: var(--text-dark);
+      }
+
+      p {
+        font-family: var(--alt-font-thin);
+        font-size: 0.9em;
+        margin: 0 20px 20px;
+        color: var(--accent-blue); // Blue text for categories
+        text-transform: uppercase;
+      }
+    }
+  }
+}
