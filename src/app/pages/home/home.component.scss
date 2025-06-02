@@ -134,12 +134,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 60px; /* Container size for icon */
-        height: 60px;
+        width: 72px; /* Container size for icon */
+        height: 72px;
         border-radius: 50%; /* Make it a circle */
         background-color: var(--primary-bg-light); /* Icon background */
         border: 1px solid var(--accent-red); /* Red border for icon circle */
-        box-shadow: 0 2px 8px rgba(233, 30, 99, 0.2); /* Subtle red shadow for icon */
+        box-shadow: 0 4px 8px rgba(233, 30, 99, 0.2); /* Subtle red shadow for icon */
 
         img {
           // If your SVG is monochrome (black/white) and you want it colored:
@@ -166,99 +166,111 @@
 }
 
 /* Softwares Section */
-.softwares-section { /* Changed from .Softwares-section */
+.softwares-section {
   background-color: var(--secondary-bg-light); // Slightly off-white background
   padding: 60px 20px;
 
-  .softwares-grid { /* Changed from .Softwares-grid */
+  .softwares-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjusted minmax for more items per row on larger screens */
     gap: 1em;
     justify-content: center;
     align-items: stretch;
 
     .software-card {
-      background-color: var(--primary-bg-light); // Copied from .card-base
-      border-radius: 5px; // Less rounded corners (Copied from .card-base)
-      box-shadow: 0 5px 15px var(--shadow-light); // (Copied from .card-base)
-      overflow: hidden; // (Copied from .card-base)
-      transition: transform 0.3s ease, box-shadow 0.3s ease; // (Copied from .card-base)
-      padding: 25px; // (Copied from .card-base)
+      background-color: var(--primary-bg-light);
+      border-radius: 5px;
+      box-shadow: 0 5px 15px var(--shadow-light);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      padding: 25px;
 
       &:hover {
-        transform: translateY(-3px); // (Copied from .card-base)
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12); // (Copied from .card-base)
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
       }
-
 
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
       padding: 30px;
-      border: 1px solid var(--border-light); // Add a light border
+      border: 1px solid var(--border-light);
 
       // Specific styles for outlined circular cards
-      &.card-outline-circle {
-        border-radius: 50%; // Circular shape
-        width: 200px; // Fixed width for circular cards
-        height: 200px; // Fixed height for circular cards
+            &.card-outline-circle {
+        border-radius: 50%;
+        width: 180px;
+        height: 180px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 0; // No padding for content within circle
-        box-shadow: none; // No shadow for these cards
+        padding: 0;
+        box-shadow: none;
+        position: relative;
+        z-index: 0;
+        overflow: hidden;
+        background-color: var(--primary-bg-light); /* Ensure default background color is set here */
+        transition: border-color 0.3s ease, background-color 0.3s ease, filter 0.3s ease; /* Add filter to transition */
+
+
         &:hover {
-          transform: none; // No transform on hover for these
+          transform: none;
           box-shadow: none;
-          background-color: var(--primary-bg-light); // Keep background consistent
-          border-color: var(--accent-red); // Red border on hover
+          // background-color: var(--primary-bg-light); /* Keep this as the base */
+          filter: brightness(0.6); /* Darken by 25% */
+          border-color: var(--accent-red);
+
+          // On hover, text slides up and becomes visible
           h3, p {
-            color: var(--accent-red); // Red text on hover
+            transform: translateY(0);
+            opacity: 1;
+            color: var(--accent-red); /* Text color change on hover */
           }
         }
 
         h3 {
-          font-family: var(--body-font); // Simpler font for these headings
+          font-family: var(--body-font);
           font-size: 1.1em;
           margin-bottom: 5px;
           color: var(--text-dark);
+          position: relative;
+          z-index: 2;
+          transform: translateY(100%);
+          opacity: 0;
+          transition: transform 0.3s ease, opacity 0.3s ease, color 0.3s ease;
+          text-align: center;
+          width: 100%;
         }
         p {
           font-size: 0.85em;
           color: var(--text-dark);
-          opacity: 0.7;
-        }
-      }
-
-      // Specific styles for the outlined square card (the "missing" one)
-      &.card-outline-square {
-        grid-column: span 1; // Explicitly one column
-        background-color: var(--primary-bg-light); // Light background
-        border: 1px solid var(--accent-red); // Red outline
-        box-shadow: 0 5px 15px rgba(233, 30, 99, 0.15); // Subtle red shadow
-        border-radius: 5px; // Square corners
-        padding: 0; // No padding inside
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-        min-height: 250px; // Ensure it's visually prominent
-
-        img {
+          opacity: 0;
+          position: relative;
+          z-index: 2;
+          transform: translateY(100%);
+          transition: transform 0.3s ease 0.05s, opacity 0.3s ease 0.05s, color 0.3s ease;
+          text-align: center;
           width: 100%;
-          height: 100%;
-          object-fit: cover;
         }
 
-        @media (max-width: 768px) {
-          grid-column: span 1; // Always one column on smaller screens
-        }
+        .software-icon-bg {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 80%;
+          height: 80%;
+          background-size: 70%;
+          background-position: center;
+          background-repeat: no-repeat;
+          transition: opacity 0.3s ease;
+          z-index: 1;
 
-        &:hover {
-          transform: none; // No transform on hover for this
-          box-shadow: 0 8px 25px rgba(233, 30, 99, 0.25); // More prominent red shadow on hover
+          .software-card:hover & {
+            opacity: 0.2;
+          }
         }
       }
     }
