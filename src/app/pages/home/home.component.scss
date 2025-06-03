@@ -281,7 +281,7 @@
     grid-template-columns: 1fr;
     gap: 40px;
     align-items: center;
-    text-align: center; // Default to center for mobile
+    text-align: center; /* Default to center for mobile */
 
     @media (min-width: 992px) {
       grid-template-columns: 1fr 1fr;
@@ -304,44 +304,62 @@
   }
 
   .content-image {
+    position: relative;
+    display: block; /* Important for padding-bottom trick */
+    overflow: hidden;
+    width: 100%;
+    max-width: 600px;
+
+    /* 16:9 Aspect Ratio */
+    height: 0; /* Remove fixed height */
+    padding-bottom: 56.25%; /* (9 / 16) * 100% = 56.25% */
+
+    border-radius: 5px;
+    box-shadow: 0 5px 15px var(--shadow-light);
+
+    .slideshow-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%; /* Fill the container's height defined by padding-bottom */
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 3s ease-in-out; /* Changed from 1.5s to 3s */
+
+      &.active {
+        opacity: 1;
+      }
+    }
+  }
+
+  &.content-image-circle {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
     display: flex;
     justify-content: center;
+    align-items: center;
+
     img {
       width: 100%;
-      max-width: 600px;
-      height: auto;
-      border-radius: 5px; // Less rounded
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
       box-shadow: 0 5px 15px var(--shadow-light);
     }
 
-    &.content-image-circle {
-      position: relative;
-      width: 300px; // Fixed size for circular image container
-      height: 300px;
-      margin: 0 auto; // Center the circular image
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 50%; // Circular image
-        box-shadow: 0 5px 15px var(--shadow-light);
-      }
-
-      .circle-accent {
-        position: absolute;
-        width: 60px; // Size of the small accent circle
-        height: 60px;
-        background-color: var(--accent-red); // Red accent circle
-        border-radius: 50%;
-        top: -15px; // Position it slightly above/left
-        left: -15px;
-        z-index: 10;
-        box-shadow: 0 0 15px rgba(233, 30, 99, 0.4);
-      }
+    .circle-accent {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background-color: var(--accent-red);
+      border-radius: 50%;
+      top: -15px;
+      left: -15px;
+      z-index: 10;
+      box-shadow: 0 0 15px rgba(233, 30, 99, 0.4);
     }
   }
 
@@ -356,7 +374,7 @@
 
   .content-text {
     h2 {
-      text-align: inherit; // Inherit from parent grid
+      text-align: inherit;
       font-size: 2.2em;
       color: var(--heading-color);
       line-height: 1.3;
@@ -365,15 +383,6 @@
         text-align: center;
         font-size: 1.8em;
       }
-    }
-    .content-sublabel {
-      font-family: var(--alt-font-thin);
-      font-size: 0.9em;
-      color: var(--accent-blue); // Blue sub-label
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-top: -10px; // Closer to title
-      margin-bottom: 25px;
     }
     p {
       font-size: 1.1em;
