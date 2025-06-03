@@ -141,12 +141,6 @@
         border: 1px solid var(--accent-red); /* Red border for icon circle */
         box-shadow: 0 4px 8px rgba(233, 30, 99, 0.2); /* Subtle red shadow for icon */
 
-        img {
-          // If your SVG is monochrome (black/white) and you want it colored:
-          // The 'fill: var(--accent-red);' in HTML is preferable if SVG supports it.
-          // Otherwise, you can use a filter here (e.g., for red accent):
-          // filter: invert(36%) sepia(99%) saturate(4083%) hue-rotate(334deg) brightness(101%) contrast(100%);
-        }
       }
 
       h3 {
@@ -169,16 +163,20 @@
 .softwares-section {
   background-color: var(--secondary-bg-light); // Slightly off-white background
   padding: 60px 20px;
+  display: flex;
 
   .softwares-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjusted minmax for more items per row on larger screens */
-    gap: 1em;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 3em;
     justify-content: center;
     align-items: stretch;
+    max-width: 1000px; /* Adjust as needed, sum of (card_width * 5) + (gap * 4) */
+    margin-left: auto;
+    margin-right: auto;
 
     .software-card {
-      background-color: var(--primary-bg-light);
+      background-color: var(--primary-bg-light); // Re-apply background directly
       border-radius: 5px;
       box-shadow: 0 5px 15px var(--shadow-light);
       overflow: hidden;
@@ -198,82 +196,78 @@
       border: 1px solid var(--border-light);
 
       // Specific styles for outlined circular cards
-            &.card-outline-circle {
+      &.card-outline-circle {
         border-radius: 50%;
         width: 180px;
         height: 180px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        display: flex; // Keep flex to center the icon
+        flex-direction: column; // Keep for centering purposes, even if only one child
+        justify-content: center; // Center vertically
+        align-items: center; // Center horizontally
         padding: 0;
         box-shadow: none;
-        position: relative;
+        position: relative; // Keep relative for absolute icon positioning
         z-index: 0;
         overflow: hidden;
-        background-color: var(--primary-bg-light); /* Ensure default background color is set here */
-        transition: border-color 0.3s ease, background-color 0.3s ease, filter 0.3s ease; /* Add filter to transition */
-
+        background-color: var(--primary-bg-light); /* Default background color */
+        transition: border-color 0.3s ease, background-color 0.3s ease;
 
         &:hover {
-          transform: none;
-          box-shadow: none;
-          // background-color: var(--primary-bg-light); /* Keep this as the base */
-          filter: brightness(0.6); /* Darken by 25% */
-          border-color: var(--accent-red);
+          transform: none; // Reset any previous transform on card hover
+          box-shadow: none; // Reset any previous box-shadow on card hover
+          // filter: brightness(0.6); // REMOVED FILTER
+          border-color: var(--accent-red); // Change border color
 
-          // On hover, text slides up and becomes visible
-          h3, p {
-            transform: translateY(0);
-            opacity: 1;
-            color: var(--accent-red); /* Text color change on hover */
+          // On hover, icon enlarges
+          .software-icon-bg {
+            transform: translate(-50%, -50%) scale(1.2); /* Enlarge by 20% */
+            opacity: 1; /* Make it fully opaque */
           }
         }
-
         h3 {
-          font-family: var(--body-font);
-          font-size: 1.1em;
-          margin-bottom: 5px;
-          color: var(--text-dark);
-          position: relative;
-          z-index: 2;
-          transform: translateY(100%);
-          opacity: 0;
-          transition: transform 0.3s ease, opacity 0.3s ease, color 0.3s ease;
-          text-align: center;
-          width: 100%;
+          display: none; /* Completely hide h3 text */
         }
+        // REMOVED p RULE
         p {
-          font-size: 0.85em;
-          color: var(--text-dark);
-          opacity: 0;
-          position: relative;
-          z-index: 2;
-          transform: translateY(100%);
-          transition: transform 0.3s ease 0.05s, opacity 0.3s ease 0.05s, color 0.3s ease;
-          text-align: center;
-          width: 100%;
+          display: none; /* Completely hide p text */
         }
+
 
         .software-icon-bg {
-          position: absolute;
+          position: absolute; // Keep absolute to center it perfectly
           top: 50%;
           left: 50%;
-          transform: translate(-50%, -50%);
-          width: 80%;
-          height: 80%;
+          transform: translate(-50%, -50%) scale(1); /* Initial centered position, no scaling */
+          width: 70%;
+          height: 70%;
           background-size: 70%;
           background-position: center;
           background-repeat: no-repeat;
-          transition: opacity 0.3s ease;
-          z-index: 1;
-
-          .software-card:hover & {
-            opacity: 0.2;
-          }
+          opacity: 0.5; /* Initial opacity (very faint) */
+          transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition for enlargement */
+          z-index: 1; /* Just ensure it's above any potential background elements if added later */
         }
       }
     }
+  }
+}
+
+// Media queries for responsiveness (kept as before)
+@media (max-width: 1000px) {
+  .softwares-section .softwares-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .softwares-section .softwares-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .softwares-section .softwares-grid {
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 
@@ -407,7 +401,7 @@
     color: var(--accent-red);
     text-transform: uppercase;
     letter-spacing: 2px;
-    margin-bottom: 10px;
+    margin-bottom: 1em;
   }
 
   h2 {
