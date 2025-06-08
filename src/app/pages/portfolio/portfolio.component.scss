@@ -1,0 +1,139 @@
+:host {
+  display: block;
+  background-color: var(--primary-bg-light); // Base background for the host
+  color: var(--text-dark);
+  padding: 50px 20px; // Padding for the outer border effect
+  margin-top: 5em; 
+}
+
+.light-theme-section {
+  background-color: var(--primary-bg-light); // Ensures content inside has the primary light background
+  color: var(--text-dark);
+}
+
+.about-page-wrapper {
+  max-width: 1200px; // Overall content width
+  margin: 0 auto; // Center the wrapper
+  border: 1px solid var(--border-light); // The outer border
+  border-radius: 8px; // Rounded corners for the outer container
+  overflow: hidden; // Ensures content respects border-radius
+  background-color: var(--primary-bg-light); // Inner background matching the outer light theme
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05); // Subtle shadow
+}
+
+.about-content-container {
+  display: flex;
+  flex-direction: column; // Default to column for mobile
+  padding: 40px; // Internal padding for content
+  gap: 30px; // Gap between columns/rows
+
+  @media (min-width: 992px) { // Desktop layout
+    flex-direction: row; // Two columns on desktop
+    padding: 60px; // More padding on desktop
+    gap: 60px;
+    align-items: flex-start; // Align top of columns
+  }
+
+  .about-left-column {
+    flex: 1; // Take available space
+    display: flex;
+    flex-direction: column; // Stack elements vertically
+    justify-content: center; // Vertically center content if space allows
+    align-items: flex-start; // Align text to the start
+
+    .initial-logo {
+      font-family: var(--heading-font); // Use a strong, bold font
+      font-size: 2em; // Large size for the 'M'
+      font-weight: 700;
+      color: var(--text-dark); // Or a specific dark brand color
+      margin-bottom: 20px; // Space below it
+    }
+
+    .main-name {
+      font-family: var(--heading-font); // Elegant serif or strong sans-serif
+      font-size: 4em; // Very large for the name
+      line-height: 1; // Tight line height for multiline name
+      color: var(--text-dark); // Primary text color for the name
+      margin: 0 0 20px 0; // Adjust margins
+      text-transform: capitalize; // Keep consistent casing
+
+      @media (max-width: 768px) {
+        font-size: 3em;
+      }
+      @media (max-width: 480px) {
+        font-size: 2.5em;
+      }
+    }
+
+    .intro-greeting {
+      font-family: var(--body-font); // Match the general body font
+      font-size: 1.2em;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .main-bio {
+      font-family: var(--body-font);
+      font-size: 1em;
+      color: var(--text-dark);
+      line-height: 1.7;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+
+    .clients-heading {
+      font-family: var(--body-font);
+      font-size: 1em;
+      font-weight: 600; // Slightly bolder
+      color: var(--text-dark);
+      margin-bottom: 10px;
+    }
+
+    .clients-list {
+      list-style: none; // Remove bullet points
+      padding: 0;
+      margin: 0 0 30px 0; // Space below the list
+
+      li {
+        font-family: var(--body-font);
+        font-size: 0.95em;
+        color: var(--text-dark);
+        line-height: 1.6;
+        opacity: 0.8;
+      }
+    }
+
+    .social-links {
+      display: flex;
+      gap: 20px; // Space between social links
+
+      .social-link {
+        font-family: var(--body-font);
+        font-size: 1em;
+        color: var(--accent-red); // Accent color for links
+        text-decoration: none;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: var(--accent-red-darker);
+        }
+      }
+    }
+  }
+
+  .about-right-column {
+    flex: 1; // Take available space
+    display: flex;
+    justify-content: center; // Center image horizontally
+    align-items: center; // Center image vertically
+    
+    .profile-photo {
+      width: 100%; // Image fills its column
+      max-width: 400px; // Max size for the image
+      height: auto;
+      border-radius: 5px; // Subtle rounded corners
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); // Shadow for the photo
+    }
+  }
+}
