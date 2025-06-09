@@ -1,7 +1,8 @@
-
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
+import { FormsModule } from '@angular/forms'; // Import FormsModule
 
 import { AppRoutingModule } from './app-routing.module'; // Import AppRoutingModule
 import { AppComponent } from './app.component';
@@ -12,6 +13,7 @@ import { PortfolioComponent } from './pages/portfolio/portfolio.component';
 import { PortfolioDetailComponent } from './pages/portfolio-detail/portfolio-detail.component';
 import { BlogComponent } from './pages/blog/blog.component';
 import { BlogPostComponent } from './pages/blog-post/blog-post.component';
+import { ContactComponent } from './pages/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -22,12 +24,15 @@ import { BlogPostComponent } from './pages/blog-post/blog-post.component';
     PortfolioComponent,
     PortfolioDetailComponent,
     BlogComponent,
-    BlogPostComponent
+    BlogPostComponent,
+    ContactComponent // Ensure ContactComponent is declared
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, // Add AppRoutingModule here
-    HttpClientModule // Add HttpClientModule here
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    FormsModule // Add FormsModule here
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -422,7 +422,26 @@
     }
   }
   .contact-btn {
+    display: inline-block; /* Make it behave like a block for padding/sizing */
+    text-decoration: none;
+    background-color: var(--heading-color);
+    color: white;
+    border: none;
+    padding: 15px 30px; /* Adjust padding for button look */
+    border-radius: 8px; /* Rounded corners */
+    font-family: var(--heading-font);
+    font-size: 1em;
+    font-weight: 600;
     text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      background-color: var(--accent-red);
+      transform: scale(1.05); /* Slightly enlarge on hover */
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
   }
 }
 

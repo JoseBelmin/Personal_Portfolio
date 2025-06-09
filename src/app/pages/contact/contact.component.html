@@ -1,0 +1,94 @@
+<section class="contact-section light-theme-section">
+  <div class="contact-page-wrapper">
+    <div class="contact-content-container">
+      <!-- Left Column: Contact Info -->
+      <div class="contact-left-column">
+        <p class="section-label">Contact Me</p>
+        <h2 class="contact-title">Let's talk <br> about you</h2>
+        <div class="contact-details">
+          <div class="detail-item">
+            <span class="icon">📞</span> <!-- Phone icon placeholder -->
+            <!-- Link to WhatsApp in a new tab -->
+            <a href="https://wa.me/971501528668" class="detail-link" target="_blank" rel="noopener noreferrer">+971 50 152 8668</a>
+          </div>
+          <div class="detail-item">
+            <span class="icon">📧</span> <!-- Email icon placeholder -->
+            <!-- Link to Gmail compose window in a new tab -->
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=josebelmin16@gmail.com" class="detail-link" target="_blank" rel="noopener noreferrer">josebelmin16&#64;gmail.com</a>
+          </div>
+          <div class="detail-item">
+            <span class="icon">📍</span> <!-- Location icon placeholder -->
+            <!-- Link to Google Maps for the address -->
+            <a href="https://www.google.com/maps/search/?api=1&query=17th+street+Bu+Danig,+Sharjah,+United+Arab+Emerates" class="detail-link" target="_blank" rel="noopener noreferrer">
+              17th street Bu Danig, <br> Sharjah, United Arab Emirates
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Contact Form -->
+      <div class="contact-right-column">
+        <div class="form-card">
+          <h3 class="form-heading">Send me a Message</h3>
+          <!-- (ngSubmit) handler and #contactForm="ngForm" for form validation -->
+          <form class="contact-form" (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
+            <div class="form-group">
+              <label for="fullName">Full Name*</label>
+              <!-- MODIFIED: Replaced ?. with . -->
+              <input type="text" id="fullName" name="full_name" placeholder="Jose Belmin" required [(ngModel)]="formData.full_name"
+                     [class.is-invalid]="contactForm.controls['full_name'].invalid && contactForm.controls['full_name'].touched">
+              <div *ngIf="contactForm.controls['full_name'].invalid && contactForm.controls['full_name'].touched" class="validation-message">
+                Full Name is required.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">E-Mail*</label>
+              <!-- MODIFIED: Replaced ?. with . -->
+              <input type="email" id="email" name="email" placeholder="josebelmin16&#64;gmail.com" required email [(ngModel)]="formData.email"
+                     [class.is-invalid]="contactForm.controls['email'].invalid && contactForm.controls['email'].touched">
+              <div *ngIf="contactForm.controls['email'].invalid && contactForm.controls['email'].touched" class="validation-message">
+                <span *ngIf="contactForm.controls['email'].errors?.['required']">Email is required.</span>
+                <span *ngIf="contactForm.controls['email'].errors?.['email']">Enter a valid email.</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject*</label>
+              <!-- MODIFIED: Replaced ?. with . -->
+              <select id="subject" name="subject" required [(ngModel)]="formData.subject"
+                      [class.is-invalid]="contactForm.controls['subject'].invalid && contactForm.controls['subject'].touched">
+                <option value="" disabled selected>Select a subject</option> <!-- Changed placeholder text -->
+                <option value="Web Development">Web Development</option>
+                <option value="ui-ux-design">UI/UX Design</option>
+                <option value="other">Other</option>
+              </select>
+              <div *ngIf="contactForm.controls['subject'].invalid && contactForm.controls['subject'].touched" class="validation-message">
+                Subject is required.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="message">Your message here*</label>
+              <!-- MODIFIED: Replaced ?. with . -->
+              <textarea id="message" name="message" rows="5" placeholder="Hi! " required [(ngModel)]="formData.message"
+                        [class.is-invalid]="contactForm.controls['message'].invalid && contactForm.controls['message'].touched"></textarea>
+              <div *ngIf="contactForm.controls['message'].invalid && contactForm.controls['message'].touched" class="validation-message">
+                Message is required.
+              </div>
+            </div>
+            <!-- Button disabled state, text based on loading, and spinner -->
+            <button type="submit" class="send-button" [disabled]="contactForm.invalid || isLoading">
+              {{ isLoading ? 'Sending...' : 'Send' }} <span class="send-icon" *ngIf="!isLoading">▶</span>
+              <span class="spinner" *ngIf="isLoading"></span>
+            </button>
+            <!-- Added feedback messages -->
+            <div *ngIf="submitStatus === 'success'" class="submit-message success-message">
+              Message sent successfully! Thank you.
+            </div>
+            <div *ngIf="submitStatus === 'error'" class="submit-message error-message">
+              Failed to send message. Please try again.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

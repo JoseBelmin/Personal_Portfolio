@@ -5,6 +5,7 @@ import { PortfolioComponent } from './pages/portfolio/portfolio.component';
 import { PortfolioDetailComponent } from './pages/portfolio-detail/portfolio-detail.component';
 import { BlogComponent } from './pages/blog/blog.component';
 import { BlogPostComponent } from './pages/blog-post/blog-post.component';
+import { ContactComponent } from './pages/contact/contact.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'portfolio/:id', component: PortfolioDetailComponent },
   { path: 'blog', component: BlogComponent },
   { path: 'blog/:slug', component: BlogPostComponent },
+  { path: 'contact', component: ContactComponent },
   { path: '**', redirectTo: '' } // Redirect to home for any unknown routes
 ];
 
