@@ -19,7 +19,7 @@
   --accent-blue: #{$base-accent-blue}; // Blue accent for some text
 
   // Corrected: Define a CSS variable for the darkened red accent
-  --accent-red-darkened: #{darken($base-accent-red, 10%)};
+  --accent-red-darkened:  color.adjust($color, $lightness: -10%);
 
   --border-light: #e0e0e0; // Light border for separation
   --shadow-light: rgba(0, 0, 0, 0.08); // Light shadow for depth
