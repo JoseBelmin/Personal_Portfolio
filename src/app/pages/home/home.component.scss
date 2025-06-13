@@ -18,94 +18,59 @@
   justify-content: center;
   text-align: center;
   min-height: 80vh; // Ensure it takes up most of the viewport height
+}
 
-  .hero-circle-container {
-    position: relative;
-    width: 250px; // Size of the entire circle structure
-    height: 250px;
-    margin-bottom: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.hero-label {
+  font-family: var(--alt-font-thin);
+  font-size: 0.9em;
+  color: var(--accent-red); // Red label
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
 
-    .hero-circle-outer {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border: 1px solid var(--border-light); // Light outline
-      border-radius: 50%;
-      z-index: 1;
-    }
+.hero-title {
+  font-size: 4.5em; // Larger font size
+  font-family: var(--heading-font);
+  color: var(--heading-color); // Blue heading
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 
-    .hero-circle-inner {
-      width: 80%; // Inner circle size relative to outer
-      height: 80%;
-      border-radius: 50%;
-      overflow: hidden; // Ensure image stays within circle
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: var(--secondary-bg-light); // Background for inner circle
-      z-index: 2;
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 50%; // Keep image circular
-      }
-    }
+  @media (max-width: 768px) {
+    font-size: 3em;
   }
-
-  .hero-label {
-    font-family: var(--alt-font-thin);
-    font-size: 0.9em;
-    color: var(--accent-red); // Red label
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
+  @media (max-width: 480px) {
+    font-size: 2.5em;
   }
+}
 
-  .hero-title {
-    font-size: 4.5em; // Larger font size
-    font-family: var(--heading-font);
-    color: var(--heading-color); // Blue heading
-    margin: 0;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+.hero-subtitle {
+  font-size: 1.2em;
+  font-family: var(--alt-font-thin);
+  color: var(--text-dark);
+  margin-top: 10px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 
-    @media (max-width: 768px) {
-      font-size: 3em;
-    }
-    @media (max-width: 480px) {
-      font-size: 2.5em;
-    }
-  }
-
-  .hero-subtitle {
-    font-size: 1.2em;
-    font-family: var(--alt-font-thin);
-    color: var(--text-dark);
-    margin-top: 10px;
-    font-weight: 300;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-
-    @media (max-width: 768px) {
-      font-size: 1em;
-    }
+  @media (max-width: 768px) {
+    font-size: 1em;
   }
 }
 
 /* Why Choose Me Section*/
-  .features-section {
+.features-section {
   background-color: var(--secondary-bg-light); // Slightly off-white background
   padding: 60px 20px;
   text-align: center; // Center text for section label, heading, sub-label
 
   .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjusted minmax for better 3-column fit */
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(280px, 1fr)
+    ); /* Adjusted minmax for better 3-column fit */
     gap: 30px; /* Adjusted gap for spacing between cards */
     justify-content: center;
     align-items: stretch;
@@ -140,11 +105,12 @@
         background-color: var(--primary-bg-light); /* Icon background */
         border: 1px solid var(--accent-red); /* Red border for icon circle */
         box-shadow: 0 4px 8px rgba(233, 30, 99, 0.2); /* Subtle red shadow for icon */
-
       }
 
       h3 {
-        font-family: var(--body-font); // Or var(--heading-font) if you prefer for card titles
+        font-family: var(
+          --body-font
+        ); // Or var(--heading-font) if you prefer for card titles
         font-size: 1.4em;
         margin-bottom: 10px;
         color: var(--heading-color); // Card title color
@@ -209,7 +175,9 @@
         position: relative; // Keep relative for absolute icon positioning
         z-index: 0;
         overflow: hidden;
-        background-color: var(--primary-bg-light); /* Default background color */
+        background-color: var(
+          --primary-bg-light
+        ); /* Default background color */
         transition: border-color 0.3s ease, background-color 0.3s ease;
 
         &:hover {
@@ -231,7 +199,6 @@
         p {
           display: none; /* Completely hide p text */
         }
-
 
         .software-icon-bg {
           position: absolute; // Keep absolute to center it perfectly
@@ -435,7 +402,8 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease,
+      box-shadow 0.3s ease;
 
     &:hover {
       background-color: var(--accent-red);
@@ -469,7 +437,6 @@
         transform: translateY(-3px); // (Copied from .card-base)
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12); // (Copied from .card-base)
       }
-
 
       padding: 0;
       text-align: center; // Center text for these cards
